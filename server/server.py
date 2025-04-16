@@ -8,12 +8,16 @@ from io import BytesIO
 from PIL import Image
 import os
 import uuid
+from dotenv import load_dotenv
+
+load_dotenv() 
 
 app = Flask(__name__)
 CORS(app)
 
-app.config["MONGO_URI"] = "mongodb+srv://snehaarumugam10:1234@cluster0.vjlohxw.mongodb.net/face_recognition_db?retryWrites=true&w=majority"
+app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 mongo = PyMongo(app)
+
 
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
