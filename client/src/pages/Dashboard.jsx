@@ -25,7 +25,7 @@ const Dashboard = ({ user }) => {
           <SidebarItem icon={<UserIcon />} label="Profile" active />
         </nav>
         <div className="p-4 border-t">
-          <button onClick={onLogout} className="flex items-center text-gray-600 hover:text-red-500 w-full">
+          <button onClick={onLogout} className="flex items-center text-white hover:text-red-500 w-full bg-gray-900 p-3 rounded-md">
             <LogoutIcon className="mr-2" />
             <span>Logout</span>
           </button>
@@ -77,7 +77,6 @@ const Dashboard = ({ user }) => {
             </div>
           </div>
           
-          {/* Authentication status cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <StatsCard title="Authentication Method" value="Face Recognition" />
             <StatsCard title="Login Status" value="Verified" />
