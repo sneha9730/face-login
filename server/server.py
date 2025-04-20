@@ -57,7 +57,7 @@ def register():
     mongo.db.users.insert_one({
         'name': name,
         'email': email,
-        'phone': phone,  # Ensuring this key matches what the frontend expects
+        'phone': phone,
         'photo': filename
     })
     
@@ -97,8 +97,7 @@ def login():
     
     stored_img_resized = cv2.resize(stored_img, (100, 100))
     error = np.mean((face_input_resized.astype("float") - stored_img_resized.astype("float")) ** 2)
-    
-    # More lenient threshold for face matching
+
     if error < 3000:
         name_parts = user['name'].split(' ', 1)
         first_name = name_parts[0]
