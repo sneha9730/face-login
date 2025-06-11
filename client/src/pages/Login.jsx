@@ -9,10 +9,10 @@ const Login = ({ onLogin }) => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isRestartingCamera, setIsRestartingCamera] = useState(false);
 
   useEffect(() => {
     startCamera();
-    
     return () => {
       if (videoRef.current && videoRef.current.srcObject) {
         const tracks = videoRef.current.srcObject.getTracks();
@@ -23,14 +23,14 @@ const Login = ({ onLogin }) => {
 
   const startCamera = async () => {
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ 
-        video: { 
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: {
           width: { ideal: 640 },
           height: { ideal: 480 },
           facingMode: "user"
-        } 
+        }
       });
-      
+
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
         setIsCapturing(true);
@@ -44,89 +44,79 @@ const Login = ({ onLogin }) => {
   const captureImage = () => {
     const video = videoRef.current;
     const canvas = canvasRef.current;
-    
+
     if (!video || !canvas) return;
-    
+
     const context = canvas.getContext('2d');
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
-    
-    // Draw the video frame to the canvas
     context.drawImage(video, 0, 0, canvas.width, canvas.height);
-    
-    // Convert canvas to data URL
+
     const imageDataUrl = canvas.toDataURL('image/png');
     setCapturedImage(imageDataUrl);
     setIsCapturing(false);
-    
-    // Stop the camera stream
+
     if (video.srcObject) {
       const tracks = video.srcObject.getTracks();
       tracks.forEach(track => track.stop());
     }
   };
 
-  const retakePhoto = () => {
+  const retakePhoto = async () => {
+    setIsRestartingCamera(true);
     setCapturedImage('');
-    startCamera();
+    await startCamera();
+    setIsRestartingCamera(false);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!email) {
       setMessage("Please enter your email address");
       return;
     }
-    
     if (!capturedImage) {
       setMessage("Please capture your photo first");
       return;
     }
-    
+
     setIsSubmitting(true);
-    
+
     try {
       const response = await fetch('http://localhost:9000/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email: email,
-          image: capturedImage
-        })
+        body: JSON.stringify({ email, image: capturedImage })
       });
-      
+
       const data = await response.json();
-      
+
       if (data.success) {
         setMessage("Login successful!");
-        setIsSubmitting(false);
-        
-        // Pass the user data to parent component directly from the API response
         const userData = {
           id: data.id || "unknown",
           firstName: data.firstName || "",
           lastName: data.lastName || "",
           email: data.email || "",
-          phone_number: data.phone_number || "N/A",
+          phone: data.phone || "N/A",
           photo: data.photo || ""
         };
-        
         onLogin(userData);
       } else {
         setMessage(data.message || "Login failed. Please try again.");
-        setIsSubmitting(false);
       }
     } catch (error) {
       console.error("Login error:", error);
       setMessage("Login failed. Please try again.");
-      setIsSubmitting(false);
     }
+
+    setIsSubmitting(false);
   };
 
   return (
     <div className="min-h-screen w-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md"> 
+      <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <h2 className="mt-6 text-center text-3xl font-extrabold text-blue-600">Login to your account</h2>
       </div>
 
@@ -158,9 +148,10 @@ const Login = ({ onLogin }) => {
                   />
                   <button
                     onClick={retakePhoto}
-                    className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    disabled={isRestartingCamera}
+                    className={`absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 ${isRestartingCamera ? 'opacity-70 cursor-not-allowed' : ''}`}
                   >
-                    Retake
+                    {isRestartingCamera ? 'Restarting...' : 'Retake'}
                   </button>
                 </div>
               )}
@@ -213,7 +204,7 @@ const Login = ({ onLogin }) => {
               </button>
             </div>
             <p className="mt-2 text-center text-sm text-gray-600">
-              Don't have an account? {' '}
+              Don't have an account?{' '}
               <Link to="/register" className="font-medium text-blue-600 hover:text-blue-500">
                 Register
               </Link>

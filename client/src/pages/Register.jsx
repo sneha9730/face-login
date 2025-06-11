@@ -6,6 +6,7 @@ const FaceRegistration = () => {
   const canvasRef = useRef(null);
   const [capturedImage, setCapturedImage] = useState('');
   const [isCapturing, setIsCapturing] = useState(true);
+  const [isRestartingCamera, setIsRestartingCamera] = useState(false);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -64,15 +65,33 @@ const FaceRegistration = () => {
     setCapturedImage(imageDataUrl);
     setIsCapturing(false);
 
+    // Stop the camera after capturing
     if (video.srcObject) {
       const tracks = video.srcObject.getTracks();
       tracks.forEach(track => track.stop());
     }
   };
 
-  const retakePhoto = () => {
+  const retakePhoto = async () => {
+    setIsRestartingCamera(true);
     setCapturedImage('');
-    startCamera();
+    
+    // Clear any existing message
+    if (message && !message.includes('successful')) {
+      setMessage('');
+    }
+    
+    // Wait a bit to ensure the previous stream is fully stopped
+    await new Promise(resolve => setTimeout(resolve, 100));
+    
+    try {
+      await startCamera();
+    } catch (error) {
+      console.error('Error restarting camera:', error);
+      setMessage('Failed to restart camera. Please try again.');
+    } finally {
+      setIsRestartingCamera(false);
+    }
   };
 
   const handleInputChange = (e) => {
@@ -166,9 +185,12 @@ const FaceRegistration = () => {
                       <button
                         type="button"
                         onClick={retakePhoto}
-                        className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        disabled={isRestartingCamera}
+                        className={`absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                          isRestartingCamera ? 'opacity-70 cursor-not-allowed' : ''
+                        }`}
                       >
-                        Retake
+                        {isRestartingCamera ? 'Restarting...' : 'Retake'}
                       </button>
                     </div>
                   )}

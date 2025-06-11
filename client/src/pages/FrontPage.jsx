@@ -1,5 +1,4 @@
 import React from 'react';
-
 const FrontPage = () => {
   return (
     <div className="relative w-screen h-screen bg-gray-900 flex flex-col items-center justify-center px-6 overflow-hidden">
