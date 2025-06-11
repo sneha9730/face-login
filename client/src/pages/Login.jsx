@@ -127,7 +127,7 @@ const Login = ({ onLogin }) => {
   return (
     <div className="min-h-screen w-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md"> 
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-purple-600">Login to your account</h2>
+        <h2 className="mt-6 text-center text-3xl font-extrabold text-blue-600">Login to your account</h2>
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
@@ -144,7 +144,7 @@ const Login = ({ onLogin }) => {
                   />
                   <button
                     onClick={captureImage}
-                    className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white py-2 px-4 rounded-md hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   >
                     Take Photo
                   </button>
@@ -158,7 +158,7 @@ const Login = ({ onLogin }) => {
                   />
                   <button
                     onClick={retakePhoto}
-                    className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white py-2 px-4 rounded-md hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   >
                     Retake
                   </button>
@@ -181,7 +181,7 @@ const Login = ({ onLogin }) => {
                   autoComplete="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full sm:text-sm border-gray-300 rounded-md py-3 text-purple-700 pr-3 pl-3"
+                  className="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md py-3 text-blue-700 pr-3 pl-3"
                   required
                 />
               </div>
@@ -197,7 +197,7 @@ const Login = ({ onLogin }) => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gray-900 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
+                className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gray-900 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
               >
                 {isSubmitting ? (
                   <span className="flex items-center">
@@ -214,7 +214,7 @@ const Login = ({ onLogin }) => {
             </div>
             <p className="mt-2 text-center text-sm text-gray-600">
               Don't have an account? {' '}
-              <Link to="/register" className="font-medium text-purple-600 hover:text-purple-500">
+              <Link to="/register" className="font-medium text-blue-600 hover:text-blue-500">
                 Register
               </Link>
             </p>

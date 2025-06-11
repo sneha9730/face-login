@@ -129,7 +129,7 @@ const FaceRegistration = () => {
   return (
     <div className="w-screen h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-2xl">
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-purple-700">
+        <h2 className="mt-6 text-center text-3xl font-extrabold text-blue-700">
           Create new account
         </h2>
       </div>
@@ -151,7 +151,7 @@ const FaceRegistration = () => {
                       <button
                         type="button"
                         onClick={captureImage}
-                        className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white py-2 px-4 rounded-md hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                        className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
                       >
                         Take Photo
                       </button>
@@ -166,7 +166,7 @@ const FaceRegistration = () => {
                       <button
                         type="button"
                         onClick={retakePhoto}
-                        className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white py-2 px-4 rounded-md hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                        className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
                       >
                         Retake
                       </button>
@@ -188,7 +188,7 @@ const FaceRegistration = () => {
                       id="firstName"
                       value={formData.firstName}
                       onChange={handleInputChange}
-                      className="shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full sm:text-sm border-gray-300 rounded-md py-3 text-purple-700 pr-3 pl-3"
+                      className="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md py-3 text-blue-700 pr-3 pl-3"
                     />
                   </div>
 
@@ -202,7 +202,7 @@ const FaceRegistration = () => {
                       id="lastName"
                       value={formData.lastName}
                       onChange={handleInputChange}
-                      className="shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full sm:text-sm border-gray-300 rounded-md py-3 text-purple-700 pr-3 pl-3"
+                      className="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md py-3 text-blue-700 pr-3 pl-3"
                     />
                   </div>
                 </div>
@@ -217,7 +217,7 @@ const FaceRegistration = () => {
                     id="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    className="shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full sm:text-sm border-gray-300 rounded-md py-3 text-purple-700 pr-3 pl-3"
+                    className="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md py-3 text-blue-700 pr-3 pl-3"
                   />
                 </div>
 
@@ -231,7 +231,7 @@ const FaceRegistration = () => {
                     id="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    className="shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full sm:text-sm border-gray-300 rounded-md py-3 text-purple-700 pr-3 pl-3"
+                    className="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md py-3 text-blue-700 pr-3 pl-3"
                   />
                 </div>
               </div>
@@ -253,7 +253,7 @@ const FaceRegistration = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gray-900 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 ${
+                className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gray-900 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
                   isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
                 }`}
               >
@@ -262,7 +262,7 @@ const FaceRegistration = () => {
             </div>
             <div className="mt-4 text-center text-sm text-gray-600">
               Already have an account?{' '}
-              <Link to="/login" className="text-purple-600 hover:text-gray-800 font-medium">
+              <Link to="/login" className="text-blue-600 hover:text-gray-800 font-medium">
                 Login here
               </Link>
             </div>

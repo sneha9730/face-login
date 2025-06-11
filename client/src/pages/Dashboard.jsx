@@ -19,7 +19,7 @@ const Dashboard = ({ user }) => {
     <div className="flex w-screen h-screen bg-gray-100 pt-16">
       <div className="hidden md:flex w-64 flex-col bg-white shadow">
         <div className="flex items-center justify-center h-20 border-b">
-          <h3 className="text-xl font-semibold text-purple-600">MyDashboard</h3>
+          <h3 className="text-xl font-semibold text-blue-600">MyDashboard</h3>
         </div>
         <nav className="flex-1 pt-6">
           <SidebarItem icon={<UserIcon />} label="Profile" active />
@@ -35,7 +35,7 @@ const Dashboard = ({ user }) => {
       <div className="flex-1 overflow-auto">
         <header className="bg-white shadow px-6 py-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-semibold text-purple-600">Welcome, {fullName} 👋</h2>
+            <h2 className="text-2xl font-semibold text-blue-600">Welcome, {fullName} 👋</h2>
             {photoUrl ? (
               <img
                 src={photoUrl}
@@ -43,7 +43,7 @@ const Dashboard = ({ user }) => {
                 className="h-12 w-12 rounded-full object-cover border border-gray-300"
               />
             ) : (
-              <div className="h-12 w-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center">
+              <div className="h-12 w-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center">
                 <span className="font-semibold text-lg">
                   {fullName ? fullName.charAt(0).toUpperCase() : "U"}
                 </span>
@@ -55,21 +55,21 @@ const Dashboard = ({ user }) => {
         <main className="p-6">
           <div className="bg-white rounded-lg shadow mb-6">
             <div className="px-6 py-4 border-b border-gray-200">
-              <h2 className="text-lg font-semibold text-purple-600">Personal Information</h2>
+              <h2 className="text-lg font-semibold text-blue-600">Personal Information</h2>
             </div>
             <div className="p-6">
               <InfoItem 
-                icon={<UserIcon className="text-purple-500" />} 
+                icon={<UserIcon className="text-blue-500" />} 
                 label="Full Name" 
                 value={fullName} 
               />
               <InfoItem 
-                icon={<EmailIcon className="text-purple-500" />} 
+                icon={<EmailIcon className="text-blue-500" />} 
                 label="Email Address" 
                 value={email} 
               />
               <InfoItem 
-                icon={<PhoneIcon className="text-purple-500" />} 
+                icon={<PhoneIcon className="text-blue-500" />} 
                 label="Phone Number" 
                 value={phone} 
                 last 
@@ -90,8 +90,8 @@ const Dashboard = ({ user }) => {
 const SidebarItem = ({ icon, label, active }) => (
   <a
     href="#"
-    className={`flex items-center px-6 py-3 text-gray-600 hover:bg-purple-50 hover:text-purple-600 ${
-      active ? 'bg-purple-50 text-purple-600 border-r-4 border-purple-600' : ''
+    className={`flex items-center px-6 py-3 text-gray-600 hover:bg-blue-50 hover:text-blue-600 ${
+      active ? 'bg-blue-50 text-blue-600 border-r-4 border-blue-600' : ''
     }`}
   >
     <span className="mr-3">{icon}</span>
@@ -112,7 +112,7 @@ const InfoItem = ({ icon, label, value, last = false }) => (
 const StatsCard = ({ title, value }) => (
   <div className="bg-white p-6 rounded-lg shadow">
     <h3 className="text-sm font-medium text-gray-500">{title}</h3>
-    <p className="mt-2 text-2xl font-semibold text-purple-600">{value}</p>
+    <p className="mt-2 text-2xl font-semibold text-blue-600">{value}</p>
   </div>
 );
 
