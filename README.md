@@ -1,4 +1,4 @@
-# Face Authentication System 🔐
+## Face Authentication System 🔐
 
 This project is a **Face Recognition Authentication System** built with:
 
@@ -12,12 +12,12 @@ This project is a **Face Recognition Authentication System** built with:
 
 ## 🖼️ Models Used
 
-### 1. Haar Cascade (OpenCV)
+#### 1. Haar Cascade (OpenCV)
 
 * Used for basic face detection in images.
 * Very fast and lightweight.
 
-### 2. ArcFace (via DeepFace)
+#### 2. ArcFace (via DeepFace)
 
 * Used for extracting face embeddings.
 * Matching is done using cosine similarity.
