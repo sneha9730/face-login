@@ -9,7 +9,6 @@ This project is a **Face Recognition Authentication System** built with:
   *  `ArcFace` via DeepFace for embeddings & authentication
   *  `Haar Cascades` for initial face detection
 
----
 
 ## 🖼️ Models Used
 
@@ -24,4 +23,3 @@ This project is a **Face Recognition Authentication System** built with:
 * Matching is done using cosine similarity.
 * Model used within DeepFace: `ArcFace`
 
----
